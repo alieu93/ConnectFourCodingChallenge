@@ -5,6 +5,12 @@ public class ConnectFour {
 	static int columns;
 	static char[][] board;
 	
+	/**
+	 * Sets up the board by putting in the ' ' character for each array entry
+	 * 
+	 * @param r Number of rows for the board
+	 * @param c Number of columns for the board
+	 */
 	static void setupBoard(int r, int c){
 		board = new char[r][c];
 		for(int i = 0; i < r; i++){
@@ -14,6 +20,11 @@ public class ConnectFour {
 		}
 	}
 	
+	/**
+	 * Prints the board out similar to how a Connect Four board should be viewed
+	 * 
+	 * @param board The 2D array from being setup earlier so it can be printed out
+	 */
 	static void printBoard(char[][] board){
 		for(int i = 0; i < rows; i++){
 			System.out.print("| ");
@@ -28,6 +39,13 @@ public class ConnectFour {
 		System.out.println();
 	}
 	
+	/**
+	 * Handles the placement of the disk on the board based on the current state
+	 * 
+	 * @param column The column for that turn
+	 * @param player Whether or not if it's the player or the computer
+	 * @return True if it successfully placed the disk, false if the column was full
+	 */
 	static boolean putDisk(int column, boolean player){
 		char c;
 		column -= 1;
@@ -65,6 +83,12 @@ public class ConnectFour {
 		}
 	}
 	
+	/**
+	 * Checks column by column if any of the players had won
+	 * 
+	 * @param board The current state of the board
+	 * @return the character of the player that wins based on columns, if any, otherwise returns ' '
+	 */
 	public static char checkColumn(char[][] board){
 		for(int j = 0; j < columns; j++){
 			int count = 1;
@@ -83,6 +107,12 @@ public class ConnectFour {
 		return ' ';
 	}
 	
+	/**
+	 * Checks row by row if any of the players had won
+	 * 
+	 * @param board The current state of the board
+	 * @return the character of the player that wins based on rows, if any, otherwise returns ' '
+	 */
 	public static char checkRow(char[][] board){
 		for(int i = 0; i < rows; i++){
 			int count = 1;
@@ -103,6 +133,13 @@ public class ConnectFour {
 		return ' ';
 	}
 	
+	/**
+	 * Checks diagonals for potential winning moves
+	 * 
+	 * @param board The current state of the board
+	 * @param isPlayer the current player's turn
+	 * @return the character of the player that made the winning move, if any.
+	 */
 	public static char checkDiagonals(char[][] board, boolean isPlayer){
 		char player;
 		
@@ -132,6 +169,13 @@ public class ConnectFour {
         return ' ';
 	}
 	
+	/**
+	 * Calls all the other functions for checking rows, columns and diagonals for the winning move
+	 * 
+	 * @param board the current state of the board
+	 * @param isPlayer the current player's turn
+	 * @return The player who made the winning move, returns ' ' if there is no winning move
+	 */
 	public static char checkWinner(char[][] board, boolean isPlayer){
 		char winner = checkRow(board);
 		if(winner != ' ')
@@ -147,6 +191,9 @@ public class ConnectFour {
 	
 	}
 	
+	/**
+	 * The main loop of the game
+	 */
 	public static void play(){
 		Scanner input = new Scanner(System.in);
 		
